@@ -1,79 +1,79 @@
 gulp flow - interface command
 ===============
+### help
+- gulp --helpall
 
 ### 命令定义
+<> args, must add
+[] optional
+gulp <v.>:<n.> [parameter]
+
+work_dir --> work.ts dir
+run_dir  --> specify | Relative work_dir
+
+profile --> hook env[tool env]
+
+### project
+gulp create:proj -n,--name <name>
+gulp clean:proj -n,--name <name>
+gulp init:proj -n,--name <name>
+
+### verif
 #### help
-- gulp help
+- gulp verif:help
 
-#### add
-- gulp add --help
-- gulp add --case
-- gulp add --cpucase
-- gulp add --project
-- gulp add --work
+#### project
+- gulp add:verifprj -n <name>
+- gulp rm:verifprj  -n <name>
 
-#### c/lib compile
-- gulp compile --clib
-- gulp compile --model-case
-- gulp compile --cpu-case
+#### file
+- gulp file:asic [ -s,--step [sim,syn] -p,--process [--rtl | --pre | --post] ]
+- gulp file:fpga [ -s,--step [sim|syn] ]
 
-- gulp compile [--all]
+#### testcase
+- gulp build:sccase [ --case <testcase> -T,-template <template> ]
+- gulp build:cpucase [ --case <testcase> -T,-template <template> ]
+- gulp build:sdkcase [ --case <testcase> -T,-template <template> ]
+- gulp add:sccase --case <testcase> 
+- gulp add:cpucase --case <testcase> 
+- gulp add:sdkcase --case <testcase> 
 
-#### rtl sim
-- gulp build --rtl
-- gulp vlog --vcs [-T \<timeout\>] [-t \<testcase\>] [--rtl]
-- gulp vlog [--nc]  [-T \<timeout\>] [-t \<testcase\>] [--rtl]
-- gulp sim  --vcs [-T \<timeout\>] [-t \<testcase\>] [--rtl]
-- gulp sim  [--nc]  [-T \<timeout\>] [-t \<testcase\>] [--rtl]
+#### sim[asic & fpga]
+- gulp vlog:asicsim [--case <testcae> --simulator [nc|vcs] [-T <timeout>] -s,--step [rtl|pre|post] --tech [wc,lt,nosdf,tt] ]
+- gulp run:asicsim  [--case <testcase> --simulator [nc|vcs] [-T <timeout>] -s,--step [rtl|pre|post] --tech [wc,lt,nosdf,tt] ]
 
-
-- gulp build --gate
-- gulp vlog --vcs [-T \<timeout\>] [-t \<testcase\>] --pre
-- gulp vlog [--nc]  [-T \<timeout\>] [-t \<testcase\>] --pre
-- gulp sim  --vcs [-T \<timeout\>] [-t \<testcase\>] --pre
-- gulp sim  [--nc]  [-T \<timeout\>] [-t \<testcase\>] --pre
-
-- gulp vlog --vcs [-T \<timeout\>] [-t \<testcase\>] --post -tp \<wc,lt,tt\>
-- gulp vlog [--nc]  [-T \<timeout\>] [-t \<testcase\>] --post -tp \<wc,lt,tt\>
-- gulp sim  --vcs [-T \<timeout\>] [-t \<testcase\>] --post -tp \<wc,lt,tt\>
-- gulp sim  [--nc]  [-T \<timeout\>] [-t \<testcase\>] --post -tp \<wc,lt,tt\>
+- gulp vlog:fpgasim [ --case <testcase> --simulator [nc|vcs] [-T <timeout>] [-t <testcase> --step rtl|post] ]
+- gulp run:fpgasim  [ --case <testcase> --simulator [nc|vcs] [-T <timeout>] [-t <testcase> --step rtl|post] ]
 
 #### verdi
-- gulp verdi
+- gulp open:verdi [ --case <testcase> ]
 
 #### regression
-- gulp regression --task
-
-- gulp regression --add \<testcase\>
-- gulp regression --delete \<testcase\>
-- gulp regression --status \<testcase\>
-- gulp regression --list \<dirlist\> [--pre]
-- gulp regression --list \<dirlist\> --post -tp \<wc,lt,tt\>
-- gulp regression --status
-- gulp regression --rpt
+- gulp addto:regression --case <testcase>
+- gulp rmfrom:regression --case <testcase>
+- gulp list:regression
+- gulp run:regression [--file <filelist>]
+- gulp rpt:regression 
 
 #### report
-- gulp rpt --list \<dirlist\>
-- gulp rpt --ls
-- gulp rpt --list \<dirlist\> --show \<error\>
-- gulp rpt --regression
-
+- gulp show:caserpt [ --case <testcase> ]
 
 #### doc
-- gulp doc --add 
-- gulp doc --show
-- gulp doc --update
+- gulp add:casedoc 
+- gulp show:casedoc 
 
 #### clean
-- gulp clean [--all]
-- gulp clean --compile
-- gulp clean --sim
-- gulp clean --rpt
-- gulp clean --regression
+- gulp clean:sim
+- gulp clean:regression
 
+### fpga
+#### project
+- gulp add:fpgaprj -n,--name <name>
+- gulp rm:fpgaprj  -n,--name <name>
 
-#### testplan
-- gulp testplan --add
+#### syn & implemation
+- gulp syn:fpga 
+- gulp pr:fpga
 
-
-
+#### clean
+- gulp clean:fpga
