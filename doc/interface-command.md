@@ -9,10 +9,10 @@ gulp --helpall
 ```
 <> args, must add
 [] optional
-gulp <v.>:<n.> [parameter]
+gulp <v.>:<n.>   [parameter]
+gulp <tool>:<v.> [parameter]
 
 work_dir --> work.ts dir
-run_dir  --> specify | Relative work_dir
 
 profile --> hook env[tool env]
 ```
@@ -39,11 +39,18 @@ gulp rm:verifprj  -n <name>
 ```
 
 #### file
-- genarate flist for sim/syn
+- genarate flist 
+    * dut  flist [sim|syn|dummy]
+    * asic flist
+    * fpga flist
 
 ```
-gulp file:asic [ -s,--step [sim,syn] -p,--process [--rtl | --pre | --post] ]
-gulp file:fpga [ -s,--step [sim|syn] ]
+gulp vpp:component
+gulp _genDutFl [sim|syn|dummy]
+gulp gen:dutFl
+
+gulp gen:asicFl  [ -p,--process [--rtl | --pre | --post] ]
+gulp gen:fpgaFl  [ -s,--step [sim|syn] ]
 ```
 
 #### scCompile
@@ -52,8 +59,11 @@ gulp file:fpga [ -s,--step [sim|syn] ]
 ```
 gulp _compileSCSuitCaseApi
 gulp _linkSCSuitCaseApi
-gulp _compileSCSuit
-gulp _linkSCSuit
+gulp build:scSuitcaseApi
+
+gulp build:scSuitSimLib
+
+gulp clean:scsuit
 ```
 
 #### testcase
@@ -61,7 +71,9 @@ gulp _linkSCSuit
 - build testcase
 
 ```
+gulp _compileSCCase
 gulp _linkSCCase
+
 gulp build:sccase [ --case <testcase> -T,-template <template> ]
 gulp add:sccase --case <testcase> 
 
@@ -76,11 +88,11 @@ gulp add:sdkcase --case <testcase>
 - use simulator to sim: vlog/elab/sim
 
 ```
-gulp vlog:asicsim [--case <testcae> --simulator [nc|vcs] [-T <timeout>] -s,--step [rtl|pre|post] --tech [wc,lt,nosdf,tt] ]
-gulp run:asicsim  [--case <testcase> --simulator [nc|vcs] [-T <timeout>] -s,--step [rtl|pre|post] --tech [wc,lt,nosdf,tt] ]
+gulp run:elab [--case <testcase>]
+gulp run:sim  [--case <testcase>]
 
-gulp vlog:fpgasim [ --case <testcase> --simulator [nc|vcs] [-T <timeout>] [-t <testcase> --step rtl|post] ]
-gulp run:fpgasim  [ --case <testcase> --simulator [nc|vcs] [-T <timeout>] [-t <testcase> --step rtl|post] ]
+gulp run:fpgaElab [ --case <testcase>]
+gulp run:fpgaSim  [ --case <testcase>]
 ```
 
 #### verdi
@@ -88,7 +100,10 @@ gulp run:fpgasim  [ --case <testcase> --simulator [nc|vcs] [-T <timeout>] [-t <t
 - verdi load flist & fsdb file
 
 ```
-gulp open:verdi [ --case <testcase> ]
+gulp verdi:comp
+gulp verdi:load
+
+gulp load:wave
 ```
 
 #### regression
