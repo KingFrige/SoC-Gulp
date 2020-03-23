@@ -1,0 +1,18 @@
+digraph pic1 {
+  RTLFlistSrc [label = "component flist: *.f"]
+  testcaseSrc [label = "*.c, *.h"]
+  scsuitSrc   [label = "*.c, *.h, *.v"]
+  RTLFlistTarget [label = "target flist: sim_dut.f, syn_dut.f, dummy.f, sim.f..."]
+  testcaseTarget [label = "test.so"]
+  scsuitTarget   [label = "caseApi.o, *.so"]
+  simulator   [label = "simulator input: *.so, *.v, *.f, cmdArgs..."]
+  result      [label = "elab.log, sim.log, irun.log, *.fsdb"]
+
+  RTLFlistSrc -> RTLFlistTarget [label="file", fontcolor=darkgreen]
+  testcaseSrc -> testcaseTarget [label="case", fontcolor=darkgreen]
+  scsuitSrc -> scsuitTarget [label="scsuit", fontcolor=darkgreen]
+  RTLFlistTarget -> simulator
+  testcaseTarget -> simulator
+  scsuitTarget -> simulator 
+  simulator -> result  [label="sim", fontcolor=darkgreen]
+}
