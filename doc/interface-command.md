@@ -1,79 +1,155 @@
 gulp flow - interface command
 ===============
+### help
+```
+gulp --helpall
+```
 
 ### 命令定义
+```
+<> args, must add
+[] optional
+gulp <v.>:<n.>   [parameter]
+gulp <tool>:<v.> [parameter]
+
+work_dir --> work.ts dir
+
+profile --> hook env[tool env]
+```
+
+### project
+```
+gulp create:proj -n,--name <name>
+gulp clean:proj -n,--name <name>
+gulp init:proj -n,--name <name>
+```
+
+### verif
 #### help
-- gulp help
+```
+gulp verif:help
+```
 
-#### add
-- gulp add --help
-- gulp add --case
-- gulp add --cpucase
-- gulp add --project
-- gulp add --work
+#### project
+- add verif project
 
-#### c/lib compile
-- gulp compile --clib
-- gulp compile --model-case
-- gulp compile --cpu-case
+```
+gulp add:verifprj -n <name>
+gulp rm:verifprj  -n <name>
+```
 
-- gulp compile [--all]
+#### file
+- genarate flist 
+    * dut  flist [sim|syn|dummy]
+    * asic flist
+    * fpga flist
 
-#### rtl sim
-- gulp build --rtl
-- gulp vlog --vcs [-T \<timeout\>] [-t \<testcase\>] [--rtl]
-- gulp vlog [--nc]  [-T \<timeout\>] [-t \<testcase\>] [--rtl]
-- gulp sim  --vcs [-T \<timeout\>] [-t \<testcase\>] [--rtl]
-- gulp sim  [--nc]  [-T \<timeout\>] [-t \<testcase\>] [--rtl]
+```
+gulp vpp:component
+gulp _genDutFl [sim|syn|dummy]
+gulp gen:dutFl
 
+gulp gen:asicFl  [ -p,--process [--rtl | --pre | --post] ]
+gulp gen:fpgaFl  [ -s,--step [sim|syn] ]
+```
 
-- gulp build --gate
-- gulp vlog --vcs [-T \<timeout\>] [-t \<testcase\>] --pre
-- gulp vlog [--nc]  [-T \<timeout\>] [-t \<testcase\>] --pre
-- gulp sim  --vcs [-T \<timeout\>] [-t \<testcase\>] --pre
-- gulp sim  [--nc]  [-T \<timeout\>] [-t \<testcase\>] --pre
+#### scCompile
+- build sc testcase
+- build sc sim link file
+```
+gulp _compileSCSuitCaseApi
+gulp _linkSCSuitCaseApi
+gulp build:scSuitcaseApi
 
-- gulp vlog --vcs [-T \<timeout\>] [-t \<testcase\>] --post -tp \<wc,lt,tt\>
-- gulp vlog [--nc]  [-T \<timeout\>] [-t \<testcase\>] --post -tp \<wc,lt,tt\>
-- gulp sim  --vcs [-T \<timeout\>] [-t \<testcase\>] --post -tp \<wc,lt,tt\>
-- gulp sim  [--nc]  [-T \<timeout\>] [-t \<testcase\>] --post -tp \<wc,lt,tt\>
+gulp build:scSuitSimLib
+
+gulp clean:scsuit
+```
+
+#### testcase
+- add testcase
+- build testcase
+
+```
+gulp _compileSCCase
+gulp _linkSCCase
+
+gulp build:sccase [ --case <testcase> -T,-template <template> ]
+gulp add:sccase --case <testcase> 
+
+gulp build:cpucase [ --case <testcase> -T,-template <template> ]
+gulp add:cpucase --case <testcase> 
+
+gulp build:sdkcase [ --case <testcase> -T,-template <template> ]
+gulp add:sdkcase --case <testcase> 
+```
+
+#### sim[asic & fpga]
+- use simulator to sim: vlog/elab/sim
+
+```
+gulp run:elab [--case <testcase>]
+gulp run:sim  [--case <testcase>]
+
+gulp run:fpgaElab [ --case <testcase>]
+gulp run:fpgaSim  [ --case <testcase>]
+```
 
 #### verdi
-- gulp verdi
+- vericom compile rtl
+- verdi load flist & fsdb file
+
+```
+gulp verdi:comp
+gulp verdi:load
+
+gulp load:wave
+```
 
 #### regression
-- gulp regression --task
+- genarate sim list
 
-- gulp regression --add \<testcase\>
-- gulp regression --delete \<testcase\>
-- gulp regression --status \<testcase\>
-- gulp regression --list \<dirlist\> [--pre]
-- gulp regression --list \<dirlist\> --post -tp \<wc,lt,tt\>
-- gulp regression --status
-- gulp regression --rpt
+```
+gulp addto:regression --case <testcase>
+gulp rmfrom:regression --case <testcase>
+gulp list:regression
+gulp run:regression [--file <filelist>]
+gulp rpt:regression 
+```
 
 #### report
-- gulp rpt --list \<dirlist\>
-- gulp rpt --ls
-- gulp rpt --list \<dirlist\> --show \<error\>
-- gulp rpt --regression
-
+```
+gulp show:caserpt [ --case <testcase> ]
+```
 
 #### doc
-- gulp doc --add 
-- gulp doc --show
-- gulp doc --update
+```
+gulp add:casedoc 
+gulp show:casedoc 
+```
 
 #### clean
-- gulp clean [--all]
-- gulp clean --compile
-- gulp clean --sim
-- gulp clean --rpt
-- gulp clean --regression
+```
+gulp clean:sim
+gulp clean:regression
+```
 
+### fpga
+#### project
+- add fpga project
+```
+gulp add:fpgaprj -n,--name <name>
+gulp rm:fpgaprj  -n,--name <name>
+```
 
-#### testplan
-- gulp testplan --add
+#### syn & implemation
+```
+gulp syn:fpga 
+gulp pr:fpga
+```
 
-
-
+#### clean
+```
+gulp clean:fpga
+```
+### syn
