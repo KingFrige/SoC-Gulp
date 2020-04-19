@@ -91,8 +91,8 @@ gulp add:sdkcase --case <testcase>
 gulp run:elab [--case <testcase>]
 gulp run:sim  [--case <testcase>]
 
-gulp run:fpgaElab [ --case <testcase>]
-gulp run:fpgaSim  [ --case <testcase>]
+gulp runfpga:elab [ --case <testcase>]
+gulp runfpga:sim  [ --case <testcase>]
 ```
 
 #### verdi
@@ -110,11 +110,8 @@ gulp load:wave
 - genarate sim list
 
 ```
-gulp addto:regression --case <testcase>
-gulp rmfrom:regression --case <testcase>
-gulp list:regression
-gulp run:regression [--file <filelist>]
-gulp rpt:regression 
+gulp setup:simRegression [-noRun]
+gulp setup:rptRegression [-noRun]
 ```
 
 #### report
@@ -134,22 +131,32 @@ gulp clean:sim
 gulp clean:regression
 ```
 
+### backend
+```
+gulp setup:spglass
+gulp setup:lint
+gulp setup:fm
+gulp setup:pt
+gulp setup:syn
+gulp setup:pr
+```
+
+
 ### fpga
 #### project
 - add fpga project
 ```
 gulp add:fpgaprj -n,--name <name>
-gulp rm:fpgaprj  -n,--name <name>
 ```
 
 #### syn & implemation
 ```
-gulp syn:fpga 
-gulp pr:fpga
+gulp setup:fpga
+gulp create:fpgaIP
+gulp build:fpga
 ```
 
 #### clean
 ```
 gulp clean:fpga
 ```
-### syn

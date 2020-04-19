@@ -1,0 +1,20 @@
+digraph pic1 {
+  RTLFlistSrc [label = "component flist: *.f"]
+  RTLFlistTarget [label = "target flist: fpga_syn_dut.f..."]
+  IPTclList  [label = "*.vivado.tcl"]
+  edfList [label = "*.edf"]
+  dcpList [label = "*.dcp"]
+  sdcFile [label = "chip.sdc"]
+  xdcFile [label = "chip.xdc"]
+  result  [label = "*.log, chip.bit"]
+
+  RTLFlistSrc    -> RTLFlistTarget [label="file", fontcolor=darkgreen]
+  sdcFile        -> edfList [label="syn", fontcolor=darkgreen]
+  RTLFlistTarget -> edfList [label="syn", fontcolor=darkgreen]
+  IPTclList      -> dcpList  [label="syn", fontcolor=darkgreen]
+  sdcFile        -> dcpList [label="syn", fontcolor=darkgreen]
+  RTLFlistTarget -> dcpList [label="syn", fontcolor=darkgreen]
+  edfList -> result [label="imp", fontcolor=darkgreen]
+  dcpList -> result [label="imp", fontcolor=darkgreen]
+  xdcFile -> result [label="imp", fontcolor=darkgreen]
+}
