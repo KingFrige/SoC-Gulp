@@ -5,8 +5,9 @@ digraph pic1 {
   RTLFlistTarget [label = "target flist: sim_dut.f, syn_dut.f, dummy.f, sim.f..."]
   testcaseTarget [label = "test.so"]
   scsuitTarget   [label = "caseApi.o, *.so"]
-  simulator   [label = "simulator input: *.so, *.v, *.f, cmdArgs..."]
-  result      [label = "elab.log, sim.log, irun.log, *.fsdb"]
+  simulator      [label = "simulator input: *.so, *.v, *.f, cmdArgs..."]
+  simResult      [label = "elab.log, sim.log, irun.log, *.fsdb"]
+  reportFiles    [label = "*.rpt"]
 
   RTLFlistSrc -> RTLFlistTarget [label="file", fontcolor=darkgreen]
   testcaseSrc -> testcaseTarget [label="case", fontcolor=darkgreen]
@@ -14,5 +15,6 @@ digraph pic1 {
   RTLFlistTarget -> simulator
   testcaseTarget -> simulator
   scsuitTarget -> simulator 
-  simulator -> result  [label="sim", fontcolor=darkgreen]
+  simulator -> simResult  [label="sim", fontcolor=darkgreen]
+  simResult  -> reportFiles [label="report", fontcolor=darkgreen]  
 }
