@@ -6,6 +6,7 @@ gulp flow
 - 插件式
 - 易于构建flow
 - 报告rpt做独立收集
+- 规范file flow中的导入的设计文件
 
 
 ### Flow - 规范
@@ -13,6 +14,12 @@ gulp flow
 #### run/build  - 执行的flow任务
 #### report     - 收集报告，生成信息
 #### regression - 生成run/build与report的partten
+
+
+### Flow 空间概念
+- work 存在project之下，包含自己的配置文件work.ts
+- project 存放多个work
+
 
 ### default -> 手脚架工具
 - init
@@ -29,6 +36,7 @@ gulp flow
 
 ### asic
 - asic_file
+- asic_constrain
 - asic_syn
 - asic_report
 - asic_regression
@@ -36,6 +44,7 @@ gulp flow
 
 ### fpga
 - fpga_file
+- fpga_constrain
 - fpga_syn
 - fpga_imp
 - fpga_report
