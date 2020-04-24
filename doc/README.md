@@ -2,19 +2,56 @@ gulp flow
 ==========
 
 ### 目标
-- 易于构建simulaton环境
-   * 构建的Flow
-   * 构建的兼容性
-   * 易用性
-   * plugin
-- 易于构建FPGA环境
+- 统一的flow规范
+- 插件式
+- 易于构建flow
+- 报告rpt做独立收集
 
 
+### Flow - 规范
+#### file       - 归档
+#### run/build  - 执行的flow任务
+#### report     - 收集报告，生成信息
+#### regression - 生成run/build与report的partten
 
+### default -> 手脚架工具
+- init
 
-### FPGA
-- 支持syplify综合IP --> synopsys IP / dw IP / ARM IP => edf 作为交换格式
-- 支持vivado综合HDL --> dcp 文件
-- 支持vivado综合Xilinx的IP，使用tcl/gui导入IP
+### verif
+- verif_file
+- verif_case
+- verif_scSuit
+- verif_uvm
+- verif_sim
+- verif_report
+- verif_regression
+- verif_wave
 
-- vivado 最后合并生成bit文件/mcs文件
+### asic
+- asic_file
+- asic_syn
+- asic_report
+- asic_regression
+- asic_view --> start_gui
+
+### fpga
+- fpga_file
+- fpga_syn
+- fpga_imp
+- fpga_report
+- fpga_regression
+- fpga_view --> start_gui
+
+### mem
+- mem_file
+- mem_verif
+- mem_report
+- mem_regression
+
+### signoff
+- signoff_file
+- signoff_spyglass
+- signoff_pt 
+- signoff_fm
+- signoff_report
+- signoff_regression

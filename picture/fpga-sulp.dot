@@ -17,10 +17,10 @@ digraph pic1 {
   IPTclList      -> dcpList        [label="syn", fontcolor=darkgreen]
   sdcFile        -> edfList        [label="syn", fontcolor=darkgreen]
   sdcFile        -> dcpList        [label="syn", fontcolor=darkgreen]
-  sdcConfigFile  -> sdcFile        [label="constarin", fontcolor=darkgreen]
+  sdcConfigFile  -> sdcFile        [label="constrain", fontcolor=darkgreen]
   synFlistTcl    -> dcpList        [label="syn", fontcolor=darkgreen]
   edfList        -> result         [label="imp", fontcolor=darkgreen]
   dcpList        -> result         [label="imp", fontcolor=darkgreen]
-  xdcConfigFile  -> xdcFile        [label="constarin", fontcolor=darkgreen]
+  xdcConfigFile  -> xdcFile        [label="constrain", fontcolor=darkgreen]
   xdcFile        -> result         [label="imp", fontcolor=darkgreen]
 }
