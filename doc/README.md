@@ -10,10 +10,10 @@ gulp flow
 
 
 ### Flow - 规范
-#### file       - 归档
-#### run/build  - 执行的flow任务
-#### report     - 收集报告，生成信息
-#### regression - 生成run/build与report的partten
+- file       - 归档
+- run/build  - 执行的flow任务
+- report     - 收集报告，生成信息
+- regression - 生成run/build与report的partten
 
 
 ### Flow 空间概念
