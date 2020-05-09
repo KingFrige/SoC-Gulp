@@ -1,20 +1,25 @@
 digraph pic1 {
   RTLFlistSrc [label = "component flist: *.f"]
-  testcaseSrc [label = "*.c, *.h"]
-  scsuitSrc   [label = "*.c, *.h, *.v"]
-  RTLFlistTarget [label = "target flist: sim_dut.f, syn_dut.f, dummy.f, sim.f..."]
-  testcaseTarget [label = "test.so"]
-  scsuitTarget   [label = "caseApi.o, *.so"]
-  simulator      [label = "simulator input: *.so, *.v, *.f, cmdArgs..."]
-  simResult      [label = "elab.log, sim.log, irun.log, *.fsdb"]
-  reportFiles    [label = "*.rpt"]
+  RTLFlistTarget [label = "target flist: syn_dut.f"]
+
+  IPdescriptionJson5 [label = "io_description.json5"]
+  SDCFile            [label = "design.sdc"]
+
+  libworkConfig [label = "work.ts"]
+  libTcl        [label = "lib_setup.tcl"]
+
+  synTclList [label = "synTclList: *.tcl"]
 
   RTLFlistSrc -> RTLFlistTarget [label="file", fontcolor=darkgreen]
-  testcaseSrc -> testcaseTarget [label="case", fontcolor=darkgreen]
-  scsuitSrc -> scsuitTarget [label="scsuit", fontcolor=darkgreen]
-  RTLFlistTarget -> simulator
-  testcaseTarget -> simulator
-  scsuitTarget -> simulator 
-  simulator -> simResult  [label="sim", fontcolor=darkgreen]
-  simResult  -> reportFiles [label="report", fontcolor=darkgreen]  
+  IPdescriptionJson5 -> SDCFile [label="asic_file", fontcolor=darkgreen]
+  libworkConfig -> libTcl [label="asic_file", fontcolor=darkgreen]
+
+  RTLFlistTarget -> synTclList [label = "asic_file", fontcolor=darkgreen]
+  SDCFile -> synTclList [label = "asic_file", fontcolor=darkgreen]
+  libTcl -> synTclList [label = "asic_file", fontcolor=darkgreen]
+
+  synTclList -> rptList [label = "asic_syn", fontcolor=darkgreen]
+  synTclList -> LogList [label = "asic_syn", fontcolor=darkgreen]
+  synTclList -> svfList [label = "asic_syn", fontcolor=darkgreen]
+  synTclList -> netList [label = "asic_syn", fontcolor=darkgreen]
 }
