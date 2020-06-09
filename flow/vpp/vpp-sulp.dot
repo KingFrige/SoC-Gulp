@@ -1,0 +1,18 @@
+digraph pic1 {
+  RTLFlistSrc [label = "rtl flist: *.f"]
+  moduleInfoList  [label = "rtl/*/module_info.json5"]
+  rtlConfig   [label = "config/json/rtl_config.json5"]
+  workConfig  [label = "work.ts"]
+  asicSimDut  [label = "asic_sim_dut.f"]
+  asicSynDut  [label = "asic_syn_dut.f"]
+  fpgaSimDut  [label = "fpga_sim_dut.f"]
+  fpgaSynDut  [label = "fpga_syn_dut.f"]
+
+  RTLFlistSrc    -> rtlConfig  [label="vppRun", fontcolor=darkgreen]
+  moduleInfoList -> rtlConfig  [label="", fontcolor=darkgreen]
+  workConfig     -> rtlConfig  [label="", fontcolor=darkgreen]
+  rtlConfig      -> asicSimDut [label="vppRun", fontcolor=darkgreen]
+  rtlConfig      -> asicSynDut [label="", fontcolor=darkgreen]
+  rtlConfig      -> fpgaSimDut [label="", fontcolor=darkgreen]
+  rtlConfig      -> fpgaSynDut [label="", fontcolor=darkgreen]
+}
