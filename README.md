@@ -77,3 +77,8 @@ SoC-Gulp
 - signoff_fm
 - signoff_report
 - signoff_regression
+
+### ci
+- ci_file
+- ci_run
+- ci_report
