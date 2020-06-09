@@ -1,0 +1,22 @@
+digraph pic1 {
+  projectDemo [label = "demo/*"]
+  verifDemo   [label = "demo/verif/*"]
+  fpgaDemo    [label = "demo/fpga/*"]
+  asicDemo    [label = "demo/asic/*"]
+  signoffDemo [label = "demo/signoff/*"]
+  memDemo     [label = "demo/mem/*"]
+  
+  project [label = "projectName/*"]
+  verif   [label = "projectName/verif/*"]
+  fpga    [label = "projectName/fpga/*"]
+  asic    [label = "projectName/asic/*"]
+  signoff [label = "projectName/signoff/*"]
+  mem     [label = "projectName/mem/*"]
+
+  projectDemo -> project [label="init", fontcolor=darkgreen]
+  verifDemo   -> verif   [label="init", fontcolor=darkgreen]
+  fpgaDemo    -> fpga    [label="init", fontcolor=darkgreen]
+  asicDemo    -> asic    [label="init", fontcolor=darkgreen]
+  signoffDemo -> signoff [label="init", fontcolor=darkgreen]
+  memDemo     -> mem     [label="init", fontcolor=darkgreen]
+}
