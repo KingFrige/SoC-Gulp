@@ -26,6 +26,16 @@ SoC-Gulp
 
 ### default -> 手脚架工具
 - init
+- new:verif
+- new:asic
+- new:fpga
+
+### git
+- git_file
+
+### vpp
+- vpp_file
+- vpp_run
 
 ### verif
 - verif_file
