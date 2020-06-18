@@ -18,11 +18,17 @@ make test
 make install
 ```
 
+#### install NodeJS
+
+#### install npm
 
 #### Checkout The Code
 ```
-$ git clone git@gitlab.cn.sifive.com:wander/SoC-Gulp-Lite.git SoC-Gulp
+$ git clone https://github.com/KingFrige/SoC-Gulp.git SoC-Gulp
 $ cd SoC-Gulp
+
+$ npm install
+
 $ source sourceme.csh
 $ cd ..
 ```
@@ -34,12 +40,16 @@ $ sulp init:project -p test_demo
 
 $ cd test_demo
 $ source sourceme.csh
+$ cd toolchain/SoC-Gulp
+$ npm install
 
-# set EDA tools
-
+$ cd test_demo
 $ sulp init:repo
 
 $ cd verif/demo/testcase/test
+
+# set EDA tools
+
 $ sulp run:vsim
 $ sulp load:wave
 ```
