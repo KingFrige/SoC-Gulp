@@ -10,6 +10,7 @@ SoC-Gulp
 * 统一的flow规范
 * 报告rpt做独立收集
 * 规范file flow中的导入的设计文件
+* 以IP为设计中心的flow    
 
 
 ### Flow - 规范
