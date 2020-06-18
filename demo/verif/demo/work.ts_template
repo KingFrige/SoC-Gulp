@@ -1,0 +1,60 @@
+module.exports = {
+  default: {
+    vppFile: {
+      rtlConfigFile:  process.env.PROJROOT_PATH+"/config/json/rtl_config.json5",
+    },
+    vppRun:{
+      vppRTLExportDir:  process.env.PROJROOT_PATH+"/rtl_export",
+    },
+    scSuit: {
+    },
+    testcase: {
+      // caseBuildDir:process.env.PROJROOT_PATH+"/verif/{{{workName}}}/build"
+    },
+    sim: {
+      asicTBFlists:[
+        process.env.PROJROOT_PATH+"/verif/{{{workName}}}/filelist/asic_tbflist"
+      ],
+      fpgaTBFlists:[
+        process.env.PROJROOT_PATH+"/verif/{{{workName}}}/filelist/fpga_tbflist"
+      ],
+      asicNetlistFlists:[
+        process.env.PROJROOT_PATH+"/verif/{{{workName}}}/filelist/asic_netlistflist"
+      ],
+      SDF:'',
+      vlogArgs: "",
+      elabArgs: "",
+      runArgs:  "",
+      // elabBuildDir:process.env.PROJROOT_PATH+"/verif/{{{workName}}}/build"
+    },
+    wave: {
+      // buildDir:process.env.PROJROOT_PATH+"/verif/{{{workName}}}/build"
+    },
+    regression: {
+      elabBuildDir:process.env.PROJROOT_PATH+"/build",
+      // simBuildDir:process.env.PROJROOT_PATH+"/build",
+      caseBuildDir:process.env.PROJROOT_PATH+"/build"
+    },
+    global: {
+      overwrite: true,
+      verifRootDir:process.env.PROJROOT_PATH,
+      projectDir:process.env.PROJROOT_PATH,
+      verifWorkDir:process.env.PROJROOT_PATH +'/verif/{{{workName}}}',
+      verifWorkName:"{{{workName}}}",
+      scSuitDir: process.env.VERIF_ENV_ROOT,
+      benchTopName:'fft_tb__1',    // update bench module name
+      rtlRootDir: process.env.PROJROOT_PATH+"/rtl",
+
+      useFlow: [
+        {flow:require('flow/vpp_file.ts')},
+        {flow:require('flow/vpp_module.ts')},
+        {flow:require('flow/vpp_run.ts')},
+        {flow:require('flow/verif_testcase.ts')},
+        {flow:require('flow/verif_sim.ts'), profile: require('profile/ius_xrun.ts')},
+        {flow:require('flow/verif_wave.ts')},
+        {flow:require('flow/verif_report.ts')},
+        {flow:require('flow/verif_regression.ts')},
+      ],
+    }
+  },
+}

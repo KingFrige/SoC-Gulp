@@ -1,0 +1,55 @@
+# A Vivado script that demonstrates a very simple RTL-to-bitstream non-project batch flow
+#
+# NOTE:  typical usage would be "vivado -mode tcl -source run_vivado_batch.tcl" 
+#
+# STEP#0: define output directory area.
+#
+set outputDir ./output
+file mkdir $outputDir
+
+# Step 1:Read in top-level EDIF netlist from synthesis tool
+
+read_checkpoint ./dcp/sSZ8LA55_64X8X1CM8b1.dcp
+read_checkpoint ./dcp/sSZ8LA55_128X11X1CM8b1.dcp
+
+read_edif bic_fpga_top.edf
+
+
+# Step 2: Specify target device and link the netlists
+link_design -top bic_fpga_top  -part xc7k325tffg900-2
+
+
+# Step 3: Read XDC constraints to specify timing requirements
+read_xdc ../syn/test.sdc
+
+
+# Read XDC constraints that specify physical constraints such as pin locations
+read_xdc ./bic_fpga_top.xdc
+
+
+# Step 4: Optimize the design with default settings
+opt_design
+
+
+# Step 5: Place the design using the default directive and save a checkpoint
+# It is recommended to save progress at certain intermediate steps
+# The placed checkpoint can also be routed in multiple runs using different options
+place_design -directive Default
+write_checkpoint bic_fpga_top.dcp
+
+
+# Step 6: Route the design with the AdvancedSkewModeling directive. For more information
+# on router directives type 'route_design -help' in the Vivado Tcl Console
+route_design -directive AdvancedSkewModeling
+
+
+# Step 7: Run Timing Summary Report to see timing results
+report_timing_summary -file post_route_timing.rpt
+
+# Run Utilization Report for device resource utilization
+report_utilization -file post_route_utilization.rpt
+
+
+# Step 8: Write checkpoint to capture the design database;
+# The checkpoint can be used for design analysis in Vivado IDE or TCL API
+write_checkpoint post_route.dcp

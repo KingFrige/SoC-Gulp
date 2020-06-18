@@ -1,0 +1,2 @@
+name                   ,alias             ,attribte  ,submodule  ,ID   ,path                       ,branch        ,groupID  ,domain  ,url
+SoC-Gulp               ,SoC-Gulp          ,other     ,True       ,505  ,toolchain/SoC-Gulp         ,master        ,199      ,['']    ,git@gitlab.cn.sifive.com:wander/SoC-Gulp-Lite.git

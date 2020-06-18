@@ -1,0 +1,38 @@
+module.exports = {
+  default: {
+    vppFile: {
+      rtlConfigFile:  process.env.PROJROOT_PATH+"/config/json/rtl_config.json5",
+    },
+    fpgaFile: {
+      fpgaWorkDir: process.env.PROJROOT_PATH+"/fpga/{{{workName}}}",
+      fpgaChipFlList:[
+        process.env.PROJROOT_PATH+"/fpga/{{{workName}}}/filelist/flist_fpga_model.f"
+      ],
+    },
+    fpgaSyn: {
+      syplifySynConstrain: 'test.sdc',
+      vivadoSynConstrain : 'test.sdc',
+      topModule:      "bic_fpga_top",
+      fpgaTechnology: "Kintex7",
+      fpgaPart:       "XC7K325T",
+      fpgaPackage:    "FFG900",
+      fpgaSpeedGrade: "-2",
+      FPGAPart:       "XC7K325TFFG900-2",
+      edfNetlist:     'bic_fpga_top.edf',
+      vivadoIPTclFlist:""
+    },
+    fpgaImp: {
+      vivadoImpConstrain: "test.xdc",
+    },
+    global: {
+      rtlRootDir: process.env.PROJROOT_PATH+"/rtl",
+
+      useFlow: [
+        {flow:require('flow/verif_file.ts')},
+        {flow:require('flow/fpga_file.ts')},
+        {flow:require('flow/fpga_syn.ts')},
+        {flow:require('flow/fpga_imp.ts')},
+      ],
+    }
+  },
+}

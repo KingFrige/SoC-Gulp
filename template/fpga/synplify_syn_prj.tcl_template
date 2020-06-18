@@ -1,0 +1,83 @@
+#project files
+set_option -include_path {./include}
+source {{{chipFlist}}}
+add_file -fpga_constraint "{{{synplifyConstrainFile}}}"
+
+set_option -technology {{{technology}}}
+set_option -part {{{part}}}
+set_option -package {{{package}}}
+set_option -speed_grade {{{speedGrade}}}
+
+
+#implementation: "BIC"
+impl -add {{{topModule}}} -type fpga
+set_option -part_companion ""
+
+set_option -vlog_std v2001
+set_option -vlog_std sysv
+set_option -project_relative_includes 1
+set_option -hdl_define -set "FPGA"
+
+#compilation/mapping options
+set_option -use_fsm_explorer 0
+set_option -top_module "{{{topModule}}}"
+
+# hdl_compiler_options
+set_option -distributed_compile 0
+set_option -allow_duplicate_modules 1
+
+# mapper_without_write_options
+set_option -frequency 20
+set_option -default_enum_encoding onehot
+set_option -resolve_multiple_driver 1
+set_option -srs_instrumentation 1
+
+# mapper_options
+set_option -write_verilog 1
+set_option -write_vhdl 0
+
+# xilinx_options
+#set_option -rw_check_on_ram 1
+#set_option -optimize_ngc 1
+
+# Xilinx Virtex2
+set_option -run_prop_extract 0
+set_option -maxfan 10000
+set_option -disable_io_insertion 1
+set_option -pipe 1
+set_option -update_models_cp 1
+set_option -retiming 1
+set_option -no_sequential_opt 1
+set_option -fix_gated_and_generated_clocks 1
+#
+# Xilinx Virtex UltraScale FPGAs
+set_option -enable_prepacking 1
+set_option -enable64bit 1
+set_option -use_vivado 1
+
+## Xilinx
+set_option -fc_phys_opt 0
+
+# sequential_optimization_options
+set_option -symbolic_fsm_compiler 1
+
+# Compiler Options
+set_option -compiler_compatible 0
+set_option -resource_sharing 0
+set_option -multi_file_compilation_unit 1
+set_option -dw_foundation 1
+set_option -dc_root /eda_tools/synopsys/syn/N-2017.09-SP5-5
+# Compiler Options
+set_option -auto_infer_blackbox 0
+
+# Compiler Options
+set_option -synthesis_onoff_pragma 1
+
+##timing report file option
+
+#automatic place and route (vendor) options
+set_option -write_apr_constraint 1
+
+#set result format/file last
+project -result_file "{{{topModule}}}.edf"
+impl -active "{{{topModule}}}"

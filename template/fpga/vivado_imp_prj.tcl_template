@@ -1,0 +1,33 @@
+set FPGA K7
+set FPGA_MODE K7
+set TOP_MODULE       {{{topModule}}}
+set InputMode   	"EDIF"
+set INCR_MODE     "NO"
+
+set FamilyName  	"{{{technology}}}"
+set DeviceName  	"{{{device}}}"
+set PackageName 	"{{{package}}}"
+set SpeedGrade  	"{{{speedGrade}}}"
+set PartName    	"{{{part}}}"
+
+create_project ${TOP_MODULE}  -part ${PartName} -force
+
+set_property design_mode GateLvl [current_fileset]
+add_files -norecurse  ${TOP_MODULE}.edf
+add_files -fileset constrs_1 -norecurse ${TOP_MODULE}.xdc
+
+add_files -norecurse ./dcp/sSZ8LA55_64X8X1CM8b1.dcp
+add_files -norecurse ./dcp/sSZ8LA55_128X11X1CM8b1.dcp
+
+set_property edif_top_file ${TOP_MODULE}.edf [current_fileset]
+if {$INCR_MODE == "YES"} {
+  set_property incremental_checkpoint ../dcp/${TOP_MODULE}_routed.dcp [get_runs impl_1]
+}
+
+reset_run impl_1
+set_property STEPS.WRITE_BITSTREAM.TCL.PRE bitgen.tcl [get_runs impl_1]
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+
+#write_cfgmem -format mcs -interface spix4 -size 128 -loadbit "bic_fpga_top.bit" -file "bic_fpga_top.mcs"
+
+exit

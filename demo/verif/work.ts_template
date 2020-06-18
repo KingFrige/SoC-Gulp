@@ -1,0 +1,28 @@
+module.exports = {
+  default: {
+    regression: {
+      elabBuildDir:process.env.PROJROOT_PATH+"/verif/build",
+      // simBuildDir:process.env.PROJROOT_PATH+"/verif/build",
+      caseBuildDir:process.env.PROJROOT_PATH+"/verif/build"
+    },
+    vppFile:{
+      rtlConfigFile:  process.env.PROJROOT_PATH+"/config/json/rtl_config.json5",
+    },
+    vppRun:{
+      vppRTLExportDir:  process.env.PROJROOT_PATH+"/rtl_export",
+    },
+    global: {
+      overwrite: true,
+      verifRootDir:process.env.PROJROOT_PATH+'/verif',
+      projectDir:process.env.PROJROOT_PATH,
+
+      scSuitDir: process.env.VERIF_ENV_ROOT,
+      benchTopName:'bench_top',
+
+      useFlow: [
+        {flow:require('flow/init.ts')},
+        {flow:require('flow/verif_regression.ts')},
+      ],
+    }
+  },
+}
