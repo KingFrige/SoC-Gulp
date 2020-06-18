@@ -1,6 +1,51 @@
-user guide
-=============
+SoC-Gulp
+========
+This repository contains SoC build flow, such as git/verif/asic/mem/fpga...
 
+
+### How to Quick verif
+
+#### install Verilg-Perl
+```
+git clone http://git.veripool.org/git/Verilog-Perl  # Only first time
+cd Verilog-Perl
+git checkout master   
+git pull origin master  
+
+perl Makefile.PL
+make
+make test
+make install
+```
+
+
+#### Checkout The Code
+```
+$ git clone git@gitlab.cn.sifive.com:wander/SoC-Gulp-Lite.git SoC-Gulp
+$ cd SoC-Gulp
+$ source sourceme.csh
+$ cd ..
+```
+
+#### Build The Project
+```
+# initial project
+$ sulp init:project -p test_demo
+
+$ cd test_demo
+$ source sourceme.csh
+
+# set EDA tools
+
+$ sulp init:repo
+
+$ cd verif/demo/testcase/test
+$ sulp run:vsim
+$ sulp load:wave
+```
+
+
+### Directory structure
 <pre>
 .
 ├── envInterface.ts    // env interface schema
@@ -20,7 +65,7 @@ user guide
 
 </pre>
 
-## how to work
+### how to work
 
 1. current directory is work directory, if you want to specify the other location, use --workDir <directory name>
 
@@ -115,26 +160,4 @@ module.exports = {
   }
 </pre>
 
-
-### How to Quick verif
-```
-> git clone git@gitlab.cn.sifive.com:wander/SoC-Gulp-Lite.git SoC-Gulp
-> cd SoC-Gulp
-> source sourceme.csh
-> cd ..
-
-# initial project
-> sulp init:project -p test_demo
-
-> cd test_demo
-> source sourceme.csh
-
-# set EDA tools
-
-> sulp init:repo
-
-> cd verif/demo/testcase/test
-> sulp run:vsim
-> sulp load:wave
-```
 
