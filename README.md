@@ -18,13 +18,11 @@ make test
 make install
 ```
 
-#### install NodeJS
-
-#### install npm
+#### install [NodeJS & npm](https://nodejs.org/en/download/)
 
 #### Checkout The Code
 ```
-$ git clone https://github.com/KingFrige/SoC-Gulp.git SoC-Gulp
+$ git clone https://gitee.com/korbenyuan/SoC-Gulp.git SoC-Gulp
 $ cd SoC-Gulp
 
 $ npm install
@@ -40,8 +38,7 @@ $ sulp init:project -p test_demo
 
 $ cd test_demo
 $ source sourceme.csh
-$ cd toolchain/SoC-Gulp
-$ npm install
+$ cd toolchain/SoC-Gulp && npm install
 
 $ cd test_demo
 $ sulp init:repo
