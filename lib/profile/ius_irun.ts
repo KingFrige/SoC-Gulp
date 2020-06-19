@@ -22,10 +22,7 @@ function _elabArgs(){
   let _elabBuildDir:string
   let _simulatorInstallDir:string
   let _simulatorCmdArgs:any
-  let _scSuitDir:string
-  let _scSuitNCLibTargetDir:string
   let _benchTopName:string
-  let _scSuitModelList:string[]
   let _elabQuiet:boolean
   let _elabTcl:string
 
@@ -35,10 +32,7 @@ function _elabArgs(){
     setElabBuildDir: (elabBuildDir: string) => {_elabBuildDir = elabBuildDir},
     setSimulatorInstallDir: (simulatorInstallDir: string) => {_simulatorInstallDir = simulatorInstallDir},
     setSimulatorCmdArgs: (simulatorCmdArgs: any) => {_simulatorCmdArgs = simulatorCmdArgs},
-    setScSuitDir: (scSuitDir: string) => {_scSuitDir = scSuitDir},
-    setScSuitNCLibTargetDir: (scSuitNCLibTargetDir: string) => {_scSuitNCLibTargetDir = scSuitNCLibTargetDir},
     setBenchTopName: (benchTopName: string) => {_benchTopName = benchTopName},
-    setScSuitModelList: (scSuitModelList: string[]) => {_scSuitModelList = scSuitModelList},
     setElabQuiet: (elabQuiet: boolean) => {_elabQuiet = elabQuiet},
     setElabTcl: (elabTcl: string) => {_elabTcl = elabTcl},
 
@@ -47,10 +41,7 @@ function _elabArgs(){
     getElabBuildDir: () => {return _elabBuildDir},
     getSimulatiorInstallDir: () => {return _simulatorInstallDir},
     getSimulatorCmdArgs: () => {return _simulatorCmdArgs},
-    getScSuitDir: () => {return _scSuitDir},
-    getScSuitNCLibTargetDir: () => {return _scSuitNCLibTargetDir},
     getBenchTopName: () => {return _benchTopName},
-    getScSuitModelList: () => {return _scSuitModelList},
     getScIusCompiler: () => {return toPath(_simulatorInstallDir, 'tools/bin/ncsc')},
     getElabQuiet: () => {return _elabQuiet},
     getElabTcl: () => {return _elabTcl},
@@ -68,21 +59,12 @@ function elabPlan(){
       const iusElabBuildDir = elabArgs.getElabBuildDir()
       const iusInstallDir   = elabArgs.getSimulatiorInstallDir()
       const iusCmdArgs      = elabArgs.getSimulatorCmdArgs()
-      const scSuitDir       = elabArgs.getScSuitDir()
-      const scSuitNCLibTargetDir = elabArgs.getScSuitNCLibTargetDir()
       const benchTopName = elabArgs.getBenchTopName()
-      const scSuitModelList = elabArgs.getScSuitModelList();
       const elabQuiet = elabArgs.getElabQuiet();
       const elabTcl = elabArgs.getElabTcl();
 
       let elabRunArgList = [] 
       let iusSCLibPath = `${iusInstallDir}/tools/systemc/lib/64bit/gnu`
-
-      let scNCLibs = scSuitModelList
-      let scNCBuildLibs = [];
-      for (var scNCLibFile of scNCLibs) {
-        scNCBuildLibs.push(getFullPath(scSuitNCLibTargetDir, scNCLibFile+ ".so"));
-      }
 
       elabRunArgList.push('-64bit')
       elabRunArgList.push('-sv')
