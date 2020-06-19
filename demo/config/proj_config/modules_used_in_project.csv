@@ -1,2 +1,3 @@
-name                   ,alias             ,attribte  ,submodule  ,ID   ,path                       ,branch        ,groupID  ,domain  ,url
-SoC-Gulp               ,SoC-Gulp          ,other     ,True       ,505  ,toolchain/SoC-Gulp         ,master        ,199      ,['']    ,
+url                                              ,path                   ,name                   ,submodule  ,ID   ,branch        ,domain
+https://gitee.com/korbenyuan/SoC-Gulp.git        ,toolchain/SoC-Gulp     ,SoC-Gulp               ,True       ,505  ,master        ,[''] 
+https://github.com/KingFrige/pipeLiningAdder.git ,rtl/pipeLiningAdder    ,pipeLiningAdder        ,True       ,505  ,master        ,['']
