@@ -8,7 +8,7 @@ if(!($?SULP_ROOT)) then
   setenv SULP_ROOT $PWD
 endif
 
-setenv PATH $SULP_ROOT/node-v10.14.2-linux-x64/bin:$SULP_ROOT/node_modules/.bin/:$PATH
+setenv PATH $SULP_ROOT/node_modules/.bin/:$PATH
 
 if (! $?var) then
   setenv NODE_PATH  $SULP_ROOT/lib:$SULP_ROOT/node_modules
