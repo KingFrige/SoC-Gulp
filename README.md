@@ -67,7 +67,6 @@ $ sulp load:wave
 │   ├── protocol
 │   └── sulp_utils.ts        // utility functions
 ├── node_modules             // node modules install directory
-├── node-v10.14.2-linux-x64  // nodejs install directory
 ├── package.json             // node configuration json file
 ├── sourceme.csh             // csh sourceme
 ├── sourceme.sh              // bash sourceme
