@@ -7,16 +7,8 @@ if (! $?LD_LIBRARY_PATH) then
 	setenv LD_LIBRARY_PATH
 endif
 
-# git clone git@github.com:veripool/verilog-perl.git
-# set vppreproc
-
-# set simulator and verdi environment
-# set xrun
-#  setenv IUS_HOME 
-#  setenv CDS_INST_DIR $IUS_HOME
-#  setenv LD_LIBRARY_PATH $IUS_HOME/tools/lib64:{$LD_LIBRARY_PATH}
-
-# set verdi
+# set vppreproc PATH
+# set simulator and verdi/gtkwave environment
 # set dc_shell
 
 if ($?CDS_INST_DIR) then
@@ -28,8 +20,10 @@ if (-e $PWD/toolchain/SoC-Gulp/sourceme.csh) then
   setenv SULP_ROOT $PWD/toolchain/SoC-Gulp
   source $SULP_ROOT/sourceme.csh
 else
-  git submodule -q add https://github.com/KingFrige/SoC-Gulp.git toolchain/SoC-Gulp
+  echo "====================="
+  echo "cloning SoC-Gulp..."
+  echo "====================="
+  git submodule -q add https://gitee.com/korbenyuan/SoC-Gulp.git toolchain/SoC-Gulp
   setenv SULP_ROOT $PWD/toolchain/SoC-Gulp
   source $SULP_ROOT/sourceme.csh
 endif
-
