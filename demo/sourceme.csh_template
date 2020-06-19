@@ -28,7 +28,7 @@ if (-e $PWD/toolchain/SoC-Gulp/sourceme.csh) then
   setenv SULP_ROOT $PWD/toolchain/SoC-Gulp
   source $SULP_ROOT/sourceme.csh
 else
-  git submodule -q add git@gitlab.cn.sifive.com:wander/SoC-Gulp-Lite.git toolchain/SoC-Gulp
+  git submodule -q add https://github.com/KingFrige/SoC-Gulp.git toolchain/SoC-Gulp
   setenv SULP_ROOT $PWD/toolchain/SoC-Gulp
   source $SULP_ROOT/sourceme.csh
 endif
