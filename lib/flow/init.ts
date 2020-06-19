@@ -75,6 +75,10 @@ gulp.task('init:project', () => {
         target: toPath(flow.projectPath, 'sourceme.csh')
       },
       {
+        src: toPath('demo/sourceme.bash_template'),
+        target: toPath(flow.projectPath, 'sourceme.bash')
+      },
+      {
         src: toPath('demo/verif/demo/work.ts_template'),
         target: toPath(verifWorkPath, 'work.ts')
       },
