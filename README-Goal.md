@@ -1,15 +1,15 @@
 SoC-Gulp
 ==========
 
-### 原则&目标
+### 原则 & 目标
 * 简单，易于部署
-* 易于构建flow
-* 静态化，设计与sulp无关，每一步的输出都可以被其他工具介入
 * 插件化，易于扩展
-* 发挥gulp task的优势: 分割组合task/创建替换task.....
+* 静态化，设计与sulp无关，每一步的输出都可以被其他工具介入
+* 易于构建flow
 * 统一的flow规范
+* 规范导入的设计文件
+* 发挥gulp task的优势: 分割组合task/创建替换task.....
 * 报告rpt做独立收集
-* 规范file flow中的导入的设计文件
 * 以IP设计为中心的flow，收集IP相关的数据：mem/port/interface/testcase
 
 
@@ -21,24 +21,25 @@ SoC-Gulp
 
 
 ### Flow 空间概念
+- project 存放多个不同的work
 - work 存在project之下，包含自己的配置文件work.ts
-- project 存放多个work
 
 
-### default -> 手脚架工具
+### Flow
+#### default -> 手脚架工具
 - init
 - new:verif
 - new:asic
 - new:fpga
 
-### git
+#### git
 - git_file
 
 ### vpp
 - vpp_file
 - vpp_run
 
-### verif
+#### verif
 - verif_file
 - verif_case
 - verif_scSuit
@@ -48,7 +49,7 @@ SoC-Gulp
 - verif_regression
 - verif_wave
 
-### asic
+#### asic
 - asic_file
 - asic_constrain
 - asic_syn
@@ -56,7 +57,7 @@ SoC-Gulp
 - asic_regression
 - asic_view --> start_gui
 
-### fpga
+#### fpga
 - fpga_file
 - fpga_constrain
 - fpga_syn
@@ -65,13 +66,13 @@ SoC-Gulp
 - fpga_regression
 - fpga_view --> start_gui
 
-### mem
+#### mem
 - mem_file
 - mem_verif
 - mem_report
 - mem_regression
 
-### signoff
+#### signoff
 - signoff_file
 - signoff_spyglass
 - signoff_pt 
@@ -79,7 +80,7 @@ SoC-Gulp
 - signoff_report
 - signoff_regression
 
-### ci
+#### ci
 - ci_file
 - ci_run
 - ci_report
