@@ -108,7 +108,7 @@ gulp.task('_xls2json5',()=>{
 })
 
 function urlIsGit(url) {
-  if(url.match(/^http:/)||url.match(/^https:/)) {
+  if(url.match(/^http:/)||url.match(/^https:/)||url.match(/^ssh:/)) {
     return true
   } else {
     return false
