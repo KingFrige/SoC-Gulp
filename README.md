@@ -5,20 +5,9 @@ This repository contains SoC build flow, such as git/verif/asic/mem/fpga...
 
 ### How to Quick verif
 
-#### install Verilg-Perl
-```
-git clone http://git.veripool.org/git/Verilog-Perl  # Only first time
-cd Verilog-Perl
-git checkout master   
-git pull origin master  
+#### Install [Verilg-Perl]https://github.com/veripool/verilog-perl()
 
-perl Makefile.PL
-make
-make test
-make install
-```
-
-#### install [NodeJS & npm](https://nodejs.org/en/download/)
+#### Install [NodeJS & npm](https://nodejs.org/en/download/)
 
 #### Checkout The Code
 ```
@@ -165,5 +154,3 @@ module.exports = {
     };
   }
 </pre>
-
-
