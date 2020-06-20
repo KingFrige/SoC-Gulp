@@ -32,6 +32,9 @@ SoC-Gulp
 - new:asic
 - new:fpga
 
+![default](docs/flow/init/demo.jpg)
+
+
 #### git
 - git_file
 
