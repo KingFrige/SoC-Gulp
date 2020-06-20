@@ -107,11 +107,27 @@ gulp.task('_xls2json5',()=>{
     .pipe(gulp.dest(Path.dirname(flow.repoCfgJSON)))
 })
 
+function urlIsGit(url) {
+  if(url.match(/^http:/)||url.match(/^https:/)) {
+    return true
+  } else {
+    return false
+  }
+}
+
+function urlIsFile(url) {
+  if(url.match(/^\//)||url.match(/^\.\//)||url.match(/^\.\.\//)) {
+    return true
+  } else {
+    return false
+  }
+}
+
 function getInitCfgSubmoduleList(repoCfgJSON:string, projectDir:string){
   const result = []
   const repoCfgList = require(repoCfgJSON)
   for(let item of repoCfgList){
-    if(item.submodule == 'True'){
+    if((item.submodule == 'True') && urlIsGit(item.url)) {
       let args = []
       args.push("submodule")
       args.push("-q")
@@ -270,6 +286,66 @@ function exeGitInitialRepo(gitLogFile:string, rtlRootDir:string, repoCfgJSON:str
   }
 }
 
+function exeCopyInitialRepo(copyLogFile:string, rtlRootDir:string, repoCfgJSON:string, projectDir:string){
+  const cmdList = getNewRTLCopyModuleList(rtlRootDir, repoCfgJSON, projectDir)
+
+  if(cmdList.length == 0){
+    console.log("")
+    console.log("No repo needs to be initialized")
+    console.log("")
+    return
+  } else {
+    let pList=[]
+    for(let cmdLine of cmdList){
+      console.log(cmdLine.cmd, ...cmdLine.args)
+      let handle=new Promise((resolve,reject)=>{
+        return runCmd(cmdLine.cmd, cmdLine.args, cmdLine.cwd)
+          .then(function(){
+            const myCmdLine = cmdLine.cmd + cmdLine.args.join(" ") + "\n"
+            fs.appendFileSync(copyLogFile, myCmdLine, 'utf8')
+          })
+      })
+      pList.push(handle)
+    }
+    return Promise.all(pList).then((result)=>{
+      let timestamp = new Date()
+      fs.appendFileSync(copyLogFile, "\n=======================\n", 'utf8')
+      fs.appendFileSync(copyLogFile, timestamp, 'utf8')
+      fs.appendFileSync(copyLogFile, "\n=======================\n", 'utf8')
+      fs.appendFileSync(copyLogFile, "\n\n\n", 'utf8')
+    })
+  }
+}
+
+gulp.task('copy:submodule',()=>{
+  if(flow.repoCfgJSON == null){
+    console.log("")
+    console.log("Please add --repoCfgJSON <args> to add repo config JOSN5 file")
+    console.log("")
+    process.exit()
+  }
+  const copyLogFile = toPath(flow.rtlRootDir, 'copyLogFile.log')
+
+  let busy = false
+  return gulp.src(flow.repoCfgJSON)
+    .pipe(newer({
+      map: (path) => {
+        return copyLogFile
+      }
+    }))
+    .pipe(through.obj((chunk, enc, cb) => {
+      if(busy){
+        cb(null)
+        return
+      }
+      busy = true
+
+      exeCopyInitialRepo(copyLogFile, flow.rtlRootDir, flow.repoCfgJSON, flow.projectDir)
+      return cb(null)
+    }))
+    .pipe(gulp.dest(Path.dirname(flow.rtlRootDir)))
+})
+
 gulp.task('clone:submodule',()=>{
 
   if(flow.repoCfgJSON == null){
@@ -302,7 +378,7 @@ gulp.task('clone:submodule',()=>{
 })
 
 
-gulp.task('init:repo', gulp.series('_csv2json5', 'clone:submodule'))
+gulp.task('init:repo', gulp.series('_csv2json5', 'clone:submodule','copy:submodule'))
 
 gulp.task('show:initialRepo', ()=>{
   const newSubmoduleList = getNewRTLSubmoduleList(flow.rtlRootDir, flow.repoCfgJSON, flow.projectDir)
@@ -357,6 +433,30 @@ function getNewRTLSubmoduleList(rtlRootDir:string, repoCfgJSON:string, projectDi
   }
 
   return result
+}
+
+function getNewRTLCopyModuleList(rtlRootDir:string, repoCfgJSON:string, projectDir:string){
+  const repoCfgList = require(repoCfgJSON)
+  const result=[]
+  for(let item of repoCfgList){
+    if(urlIsFile(item.url)) {
+      let args = []
+      args.push("-r")
+      args.push(Path.resolve(getFullPath(projectDir,item.url)))
+      args.push(item.path)
+
+      let cmdLine = {
+        cmd : 'cp',
+        args: args,
+        name: item.name,
+        path: item.path,
+        url : item.url,
+        cwd : projectDir
+      }
+      result.push(cmdLine)
+    }
+  }
+  return result 
 }
 
 function getDeprecatedRTLSubmoduleList(rtlRootDir:string, repoCfgJSON:string, projectDir:string){
