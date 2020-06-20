@@ -32,18 +32,18 @@ SoC-Gulp
 - new:asic
 - new:fpga
 
-![init](docs/flow/init/demo.jpg)
+![init](./flow/init/demo.jpg)
 
 #### git
 - git_file
 
-![git](./docs/flow/git/demo.jpg)
+![git](./flow/git/demo.jpg)
 
 ### vpp
 - vpp_file
 - vpp_run
 
-![vpp](./docs/flow/vpp/demo.jpg)
+![vpp](./flow/vpp/demo.jpg)
 
 #### verif
 - verif_file
@@ -55,7 +55,7 @@ SoC-Gulp
 - verif_regression
 - verif_wave
 
-![verif](./docs/flow/verif/demo.jpg)
+![verif](./flow/verif/demo.jpg)
 
 #### asic
 - asic_file
@@ -65,7 +65,7 @@ SoC-Gulp
 - asic_regression
 - asic_view --> start_gui
 
-![asic](./docs/flow/asic/demo.jpg)
+![asic](./flow/asic/demo.jpg)
 
 #### fpga
 - fpga_file
@@ -76,7 +76,7 @@ SoC-Gulp
 - fpga_regression
 - fpga_view --> start_gui
 
-![fpga](./docs/flow/fpga/demo.jpg)
+![fpga](./flow/fpga/demo.jpg)
 
 #### mem
 - mem_file
