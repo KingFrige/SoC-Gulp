@@ -35,31 +35,33 @@ gulp.task('init:project', () => {
     mkdirp.sync(verifWorkPath)
     copyVerifTemplate(verifWorkPath)
 
+    const rtlPath  = toPath(flow.projectPath, 'rtl')
+    mkdirp.sync(rtlPath)
+    const docsPath  = toPath(flow.projectPath, 'docs')
+    mkdirp.sync(docsPath)
+    const toolchainPath  = toPath(flow.projectPath, 'toolchain')
+    mkdirp.sync(toolchainPath)
+
     const fpgaPath  = toPath(flow.projectPath, 'fpga')
     const fpgaWorkPath = toPath(fpgaPath, 'demo')
     const fpgaConfigPath = toPath(fpgaWorkPath, 'config')
     mkdirp.sync(fpgaConfigPath)
 
     const asicPath  = toPath(flow.projectPath, 'asic')
-    mkdirp.sync(asicPath)
-
-    const rtlPath  = toPath(flow.projectPath, 'rtl')
-    mkdirp.sync(rtlPath)
+    const asicWorkPath = toPath(asicPath, 'demo')
+    const asicConfigPath = toPath(asicWorkPath, 'config')
+    mkdirp.sync(asicConfigPath)
 
     const signoffPath  = toPath(flow.projectPath, 'signoff')
-    mkdirp.sync(signoffPath)
-
-    const docsPath  = toPath(flow.projectPath, 'docs')
-    mkdirp.sync(docsPath)
+    const signoffWorkPath = toPath(signoffPath, 'demo')
+    const signoffConfigPath = toPath(signoffWorkPath, 'config')
+    mkdirp.sync(signoffWorkPath)
 
     const configPath  = toPath(flow.projectPath, 'config')
     const configPrjPath  = toPath(configPath, 'proj_config')
     const configJsonPath  = toPath(configPath, 'json')
     mkdirp.sync(configPrjPath)
     mkdirp.sync(configJsonPath)
-
-    const toolchainPath  = toPath(flow.projectPath, 'toolchain')
-    mkdirp.sync(toolchainPath)
 
     const templateMap = [
       {
