@@ -1,0 +1,34 @@
+[
+  {
+    suffix: '',
+    isVppreproc: true,
+    flist: [
+      {
+        path: '/home/korben.dong/work/AIC/SFC_AIC2/rtl/ahb_to_apb/flist.f',
+        tags: [
+          'asic_sim',
+          'asic_syn',
+          'fpga_sim',
+          'fpga_syn',
+          'dummy',
+        ],
+      },
+    ],
+  },
+  {
+    suffix: '',
+    isVppreproc: true,
+    flist: [
+      {
+        path: '/home/korben.dong/work/AIC/SFC_AIC2/rtl/wdt/flist.f',
+        tags: [
+          'asic_sim',
+          'asic_syn',
+          'fpga_sim',
+          'fpga_syn',
+          'dummy',
+        ],
+      },
+    ],
+  },
+]
