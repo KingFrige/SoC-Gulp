@@ -8,7 +8,7 @@ This repository contains SoC build flow, such as git/verif/asic/mem/fpga...
 ### Install [Verilg-Perl](https://github.com/veripool/verilog-perl)
 
 ### Install [NodeJS & npm](https://nodejs.org/en/download/)
-j
+
 ### Checkout The Code
 ```
 $ git clone https://gitee.com/korbenyuan/SoC-Gulp.git SoC-Gulp
