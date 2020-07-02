@@ -354,7 +354,7 @@ module.exports.setEnv = function(e) {
   let env = e
 
   flow = <ASICFileInterface>env.getFlow('asicFile')
-  flow.sulpRootDir = process.env.SULPHUR_ROOT
+  flow.sulpRootDir = process.env.SULP_ROOT
   flow.workDir  = env.flow.global.workDir
 
   flow.synDir = env.getOpt('asicFile.synDir', toPath(flow.workDir, 'build/syn'))
