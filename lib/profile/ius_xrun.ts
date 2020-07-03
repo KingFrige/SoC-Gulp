@@ -227,11 +227,6 @@ function simPlan(){
       simRunArgList.push('-zlib 1 ')
       simRunArgList.push('+model_data+./')
 
-      if(!simPost){
-        simRunArgList.push('-notimingchecks')
-        simRunArgList.push('-nospecify')
-      }
-
       if (simQuiet) {
         simRunArgList.push('-quiet')
         simRunArgList.push('-nostdout')
