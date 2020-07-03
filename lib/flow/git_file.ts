@@ -622,20 +622,20 @@ module.exports.setEnv = function(e) {
   if(repoCfgXLSPath != null){
     flow.repoCfgXLS = getFullPath(flow.projectDir, repoCfgXLSPath)
   } else {
-    flow.repoCfgXLS = 'config/proj_config/sft_aic2_proj_config.xlsx'
+    flow.repoCfgXLS = 'config/proj_config/proj_module_config.xlsx'
   }
 
   const repoCfgCSVPath = env.getOpt('gitFile.repoCfgCSV', null)
   if(repoCfgCSVPath != null){
     flow.repoCfgCSV = getFullPath(flow.projectDir, repoCfgCSVPath)
   } else {
-    flow.repoCfgCSV = toPath(flow.workDir, 'config/proj_config/modules_used_in_project.csv')
+    flow.repoCfgCSV = toPath(flow.workDir, 'config/proj_config/proj_module_config.csv')
   }
 
   const repoCfgJSONPath = env.getOpt('gitFile.repoCfgJSON', null)
   if(repoCfgJSONPath != null){
     flow.repoCfgJSON = getFullPath(flow.projectDir, repoCfgJSONPath)
   } else {
-    flow.repoCfgJSON = toPath(flow.workDir, 'config/json/sft_aic2_proj_config.json5')
+    flow.repoCfgJSON = toPath(flow.workDir, 'config/json/proj_module_config.json5')
   }
 }
