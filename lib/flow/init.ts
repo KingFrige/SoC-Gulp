@@ -95,8 +95,8 @@ gulp.task('init:project', () => {
         target: toPath(fpgaWorkPath, 'work.ts')
       },
       {
-        src: toPath('demo/config/proj_config/modules_used_in_project.csv'),
-        target: toPath(configPrjPath, 'modules_used_in_project.csv')
+        src: toPath('demo/config/proj_config/proj_module_config.csv'),
+        target: toPath(configPrjPath, 'proj_module_config.csv')
       },
     ]
     genStartFiles(flow.projectName, flow.workName, templateMap)
