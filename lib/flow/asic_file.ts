@@ -56,9 +56,9 @@ function  getFlist(mypathList){
   return linesText
 }
 
-function mergeFlist(moduleDescription:string, synTargetFlistPath:string){
-  const moduleDescriptionObj = require(moduleDescription)
-  const flistConfigList = moduleDescriptionObj.flist
+function mergeFlist(moduleInfo:string, synTargetFlistPath:string){
+  const moduleInfoObj = require(moduleInfo)
+  const flistConfigList = moduleInfoObj.flist
 
   const asicSynRTLFlist = []
   for(let item of flistConfigList){
@@ -85,7 +85,7 @@ gulp.task('merge:asicFl',()=>{
     mkdirp.sync(flow.synDir)
   }
 
-  mergeFlist(flow.moduleDescription, flow.synTargetFlistPath)
+  mergeFlist(flow.moduleInfo, flow.synTargetFlistPath)
 
   return new Promise((resolve)=>{
     resolve()
@@ -93,9 +93,9 @@ gulp.task('merge:asicFl',()=>{
 })
 
 
-function genSDCTemplate(moduleDescription:string, sdcTargetFile:string){
-  const moduleDescriptionObj = require(moduleDescription)
-  const portConfigList = moduleDescriptionObj.port
+function genSDCTemplate(moduleInfo:string, sdcTargetFile:string){
+  const moduleInfoObj = require(moduleInfo)
+  const portConfigList = moduleInfoObj.port
   const sdcText = []
 
   sdcText.push('#####################')
@@ -205,8 +205,8 @@ gulp.task('gen:asicSDC',()=>{
     mkdirp.sync(flow.synScriptsDir)
   }
 
-  if(Path.basename(flow.sdcTargetFile) == 'design.sdc' && fs.existsSync(flow.moduleDescription)){
-    genSDCTemplate(flow.moduleDescription, flow.sdcTargetFile)
+  if(Path.basename(flow.sdcTargetFile) == 'design.sdc' && fs.existsSync(flow.moduleInfo)){
+    genSDCTemplate(flow.moduleInfo, flow.sdcTargetFile)
   }
 
   return new Promise((resolve)=>{
@@ -290,7 +290,7 @@ gulp.task('gen:libTcl',()=>{
     mkdirp.sync(flow.synScriptsDir)
   }
   
-  if(Path.basename(flow.libTclTargetFile) == 'lib_setup.tcl' && fs.existsSync(flow.moduleDescription)){
+  if(Path.basename(flow.libTclTargetFile) == 'lib_setup.tcl' && fs.existsSync(flow.moduleInfo)){
     genLibTclTemplate(flow.libTclTargetFile, flow.techLib, flow.libName, flow.memDBFlist, flow.ipDBFlist)
   }
   
@@ -301,8 +301,8 @@ gulp.task('gen:libTcl',()=>{
 
 
 gulp.task('gen:synTcl',()=>{
-  const moduleDescriptionObj = require(flow.moduleDescription)
-  const topModule = moduleDescriptionObj.topModule
+  const moduleInfoObj = require(flow.moduleInfo)
+  const topModule = moduleInfoObj.topModule
 
   if(!fs.existsSync(flow.synScriptsDir)){
     mkdirp.sync(flow.synScriptsDir)
@@ -343,7 +343,7 @@ module.exports.init = function(program) {
     .option('--force', 'rebuild asic file flow')
     .option('-f, --flist <args>', 'specify dut flist')
     .option('-T, --topModule <args>', 'specify dut topModule')
-    .option('--moduleDescription <args>', 'specify ip description json5 file')
+    .option('--moduleInfo <args>', 'specify ip description json5 file')
     .option('--commonFlist <args>', 'specify ip commonFlist')
     .option('--libName <args>', 'specify tech lib name, default ssDB')
 }
@@ -360,7 +360,7 @@ module.exports.setEnv = function(e) {
   flow.synDir = env.getOpt('asicFile.synDir', toPath(flow.workDir, 'build/syn'))
   flow.synScriptsDir = toPath(flow.synDir, 'scripts')
 
-  flow.moduleDescription = env.getOpt('asicFile.moduleDescription', toPath(flow.workDir, 'module_description.json5'))
+  flow.moduleInfo = env.getOpt('asicFile.moduleInfo', toPath(flow.workDir, 'module_info.json5'))
 
   flow.sdcTargetFile = env.getOpt('asicFile.sdcTargetFile', toPath(flow.synScriptsDir, 'design.sdc'))
   flow.commonFlists = env.getOpt('asicFile.commonFlists', null)

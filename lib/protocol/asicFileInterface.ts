@@ -7,7 +7,7 @@ export interface ASICFileInterface {
   synDir          : string
   synScriptsDir   : string
 
-  moduleDescription : string
+  moduleInfo    : string
   sdcTargetFile : string
   synFlist      : string
   synTargetFlistPath : string
