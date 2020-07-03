@@ -37,8 +37,10 @@ gulp.task('init:project', () => {
 
     const rtlPath  = toPath(flow.projectPath, 'rtl')
     mkdirp.sync(rtlPath)
+
     const docsPath  = toPath(flow.projectPath, 'docs')
     mkdirp.sync(docsPath)
+
     const toolchainPath  = toPath(flow.projectPath, 'toolchain')
     mkdirp.sync(toolchainPath)
 
@@ -79,6 +81,10 @@ gulp.task('init:project', () => {
       {
         src: toPath('demo/sourceme.bash_template'),
         target: toPath(flow.projectPath, 'sourceme.bash')
+      },
+      {
+        src: toPath('demo/rtl/work.ts_template'),
+        target: toPath(rtlPath, 'work.ts')
       },
       {
         src: toPath('demo/verif/demo/work.ts_template'),
