@@ -40,3 +40,10 @@ $ sulp run:vsim
 $ sulp load:wave
 ```
 
+
+### TODO
+* 支持verilator仿真器
+* 支持gtkwave 波形工具
+* 支持iverilog仿真器
+* 支持yosys
+* 支持OpenRoad
