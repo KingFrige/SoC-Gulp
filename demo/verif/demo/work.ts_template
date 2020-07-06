@@ -42,7 +42,7 @@ module.exports = {
       verifWorkDir:process.env.PROJROOT_PATH +'/verif/{{{workName}}}',
       verifWorkName:"{{{workName}}}",
       scSuitDir: process.env.VERIF_ENV_ROOT,
-      benchTopName:'fft_tb__1',    // update bench module name
+      benchTopName:'bench_top',    // update bench module name
       rtlRootDir: process.env.PROJROOT_PATH+"/rtl",
 
       useFlow: [
