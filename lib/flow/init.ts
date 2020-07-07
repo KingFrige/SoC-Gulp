@@ -41,9 +41,6 @@ gulp.task('init:project', () => {
     const docsPath  = toPath(flow.projectPath, 'docs')
     mkdirp.sync(docsPath)
 
-    const toolchainPath  = toPath(flow.projectPath, 'toolchain')
-    mkdirp.sync(toolchainPath)
-
     const fpgaPath  = toPath(flow.projectPath, 'fpga')
     const fpgaWorkPath = toPath(fpgaPath, 'demo')
     const fpgaConfigPath = toPath(fpgaWorkPath, 'config')
@@ -75,15 +72,7 @@ gulp.task('init:project', () => {
         target: toPath(flow.projectPath, 'work.ts')
       },
       {
-        src: toPath('demo/sourceme.csh_template'),
-        target: toPath(flow.projectPath, 'sourceme.csh')
-      },
-      {
-        src: toPath('demo/sourceme.bash_template'),
-        target: toPath(flow.projectPath, 'sourceme.bash')
-      },
-      {
-        src: toPath('demo/rtl/work.ts_template'),
+        src: toPath('demo/rtl/work.ts'),
         target: toPath(rtlPath, 'work.ts')
       },
       {
