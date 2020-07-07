@@ -1,20 +1,22 @@
+const PROJROOT_PATH = __dirname
+
 module.exports = {
   default: {
     packDB:{
-      metaProtocolTemplateDir:  process.env.PROJROOT_PATH+"/config/template",
+      metaProtocolTemplateDir:  PROJROOT_PATH+"/config/template",
     },
     gitFile:{
     },
     vppFile:{
-      rtlConfigFile:  process.env.PROJROOT_PATH+"/config/json/rtl_config.json5",
+      rtlConfigFile:  PROJROOT_PATH+"/config/json/rtl_config.json5",
     },
     vppRun:{
-      vppRTLExportDir:  process.env.PROJROOT_PATH+"/rtl_export",
+      vppRTLExportDir:  PROJROOT_PATH+"/rtl_export",
     },
     global: {
-      projectDir : process.env.PROJROOT_PATH,
+      projectDir : PROJROOT_PATH,
       // projectPathStr : "$PROJROOT_PATH",  // use variable, default use Absolute path
-      rtlRootDir : process.env.PROJROOT_PATH+"/rtl",
+      rtlRootDir : PROJROOT_PATH+"/rtl",
 
       overwrite: true,
       useFlow: [

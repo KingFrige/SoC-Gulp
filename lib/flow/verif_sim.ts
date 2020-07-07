@@ -238,8 +238,8 @@ gulp.task('_elabBuild', () => {
       simProfile.elabPlan.elabArgs.setSimulatorCmdArgs(flow.simulatorCmdArgs)
       simProfile.elabPlan.elabArgs.setBenchTopName(flow.benchTopName)
       simProfile.elabPlan.elabArgs.setElabQuiet(flow.quiet)
-      simProfile.elabPlan.elabArgs.setElabPost(flow.post)
-      simProfile.elabPlan.elabArgs.setElabSDF(flow.SDF)
+      //simProfile.elabPlan.elabArgs.setElabPost(flow.post)
+      //simProfile.elabPlan.elabArgs.setElabSDF(flow.SDF)
       simProfile.elabPlan.elabArgs.setElabTcl(flow.elabTcl)
 
       const ret = simProfile.elabPlan.run()
@@ -382,7 +382,7 @@ gulp.task('_simBuild', () => {
       simProfile.simPlan.simArgs.setIsNotDumpWave(flow.isNotDumpWave)
       simProfile.simPlan.simArgs.setSimCoverage(flow.simCoverage)
       simProfile.simPlan.simArgs.setSimQuiet(flow.quiet)
-      simProfile.simPlan.simArgs.setSimPost(flow.post)
+      //simProfile.simPlan.simArgs.setSimPost(flow.post)
 
       let ret = simProfile.simPlan.run()
 

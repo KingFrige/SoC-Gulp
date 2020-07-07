@@ -97,8 +97,10 @@ function elabPlan(){
       elabRunArgList.push('-top ' + benchTopName)
       elabRunArgList.push('-f ' + flistFile)
 
+        /*
       let scNCBuildLibsParaList = _.map(scNCBuildLibs, (n) => {return `-loadsc ${n}`})
       elabRunArgList.push(...scNCBuildLibsParaList)
+         */
 
       let elabRunargsFile = Path.resolve(iusElabBuildDir + '/irun_elab.args')
       fs.writeFileSync(elabRunargsFile, elabRunArgList.join("\n"), 'utf8')
@@ -194,12 +196,13 @@ function simPlan(){
         }
       }
 
+      let simRunArgList = ['-log_ncsim sim.log', '-64bit', '-R', '-q', '-run', '-unbuffered', '-stacksize 2048000', '-nontcglitch', '-notimingchecks', '-nospecify'];
+
       if (simQuiet) {
         simRunArgList.push('-quiet')
         simRunArgList.push('-nostdout')
       }
 
-      let simRunArgList = ['-log_ncsim sim.log', '-64bit', '-R', '-q', '-run', '-unbuffered', '-stacksize 2048000', '-nontcglitch', '-notimingchecks', '-nospecify'];
       if (simCoverage) {
         simRunArgList.push(`-covtest ${uuid()}`)
       }

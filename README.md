@@ -26,10 +26,6 @@ $ cd ..
 $ sulp init:project -p test_demo
 
 $ cd test_demo
-$ source sourceme.csh
-$ cd toolchain/SoC-Gulp && npm install
-
-$ cd test_demo
 $ sulp init:repo
 
 $ cd verif/demo/testcase/test
