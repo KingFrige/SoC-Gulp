@@ -4,7 +4,7 @@
     isVppreproc: true,
     flist: [
       {
-        path: '/home/korben.dong/work/AIC/SFC_AIC2/rtl/ahb_to_apb/flist.f',
+        path: '/your_project_path/rtl/ahb_to_apb/flist.f',
         tags: [
           'asic_sim',
           'asic_syn',
@@ -20,7 +20,7 @@
     isVppreproc: true,
     flist: [
       {
-        path: '/home/korben.dong/work/AIC/SFC_AIC2/rtl/wdt/flist.f',
+        path: '/your_project_path/rtl/wdt/flist.f',
         tags: [
           'asic_sim',
           'asic_syn',
